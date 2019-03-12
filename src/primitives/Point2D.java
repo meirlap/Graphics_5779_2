@@ -2,6 +2,8 @@ package primitives;
 
 import java.util.Objects;
 
+import static java.lang.StrictMath.sqrt;
+
 public class Point2D {
     protected Coordinate x;
     protected Coordinate y;
@@ -23,6 +25,14 @@ public class Point2D {
     @Override
     public int hashCode() {
         return Objects.hash(getX(), getY());
+    }
+
+    public double distance(Point2D other)
+    {
+        double xx= Util.uscale((other.getX().get()-getX().get()),(other.getX().get()-getX().get()));
+        double yy= Util.uscale((other.getY().get()-getY().get()),(other.getY().get()-getY().get()));
+
+        return  sqrt(xx+yy);
     }
 
     @Override

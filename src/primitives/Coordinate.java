@@ -1,5 +1,8 @@
 package primitives;
 
+/**
+ * Coordinate for Graphics
+ */
 public final class Coordinate {
 	//private static final double EPSILON = 0.0000001;
 	protected double _coord;
@@ -7,11 +10,19 @@ public final class Coordinate {
 	public static Coordinate ZERO = new Coordinate(0.0);
 	
 	/********** Constructors ***********/
+    /**
+     *
+     * @param coord dooble value for coordinate
+     */
 	public Coordinate(double coord) {
 		// if it too close to zero make it zero
 		_coord = Util.alignZero(coord);
 	}
 
+    /**
+     * Deep Clone Constructor
+     * @param other
+     */
 	public Coordinate(Coordinate other) {
 		_coord = other._coord;
 	}
@@ -43,7 +54,12 @@ public final class Coordinate {
 	public Coordinate add(Coordinate other) {
 		return new Coordinate(Util.uadd(_coord, other._coord));
 	}
-	
+
+    /**
+     *
+     * @param num
+     * @return new updated Coordinate
+     */
 	public Coordinate scale(double num) {
 		return new Coordinate(Util.uscale(_coord, num));
 	}

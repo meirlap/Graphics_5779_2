@@ -15,6 +15,14 @@ public class Point3D extends Point2D{
         return getZ().equals(point3D.getZ());
     }
 
+    public Point3D addVector(Vector v)
+    {
+        Point3D result = new Point3D(
+                this.getX().add(v.getHead().getX()),
+                this.getY().add(v.getHead().getY()),
+                this.getZ().add(v.getHead().getZ()));
+        return  result;
+    }
     @Override
     public String toString() {
         return "Point3D{" +
