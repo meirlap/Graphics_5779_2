@@ -17,10 +17,12 @@ public class Point3D extends Point2D{
 
     public Point3D addVector(Vector v)
     {
+        Point3D p_vec = v.getHead();
+
         Point3D result = new Point3D(
-                this.getX().add(v.getHead().getX()),
-                this.getY().add(v.getHead().getY()),
-                this.getZ().add(v.getHead().getZ()));
+                this.getX().add(p_vec.getX()),
+                this.getY().add(p_vec.getY()),
+                this.getZ().add(p_vec.getZ()));
         return  result;
     }
     @Override
