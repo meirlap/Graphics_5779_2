@@ -1,6 +1,6 @@
-package geometries;
+package main.geometries;
 
-import primitives.Point3D;
+import main.primitives.Point3D;
 
 import java.util.Objects;
 

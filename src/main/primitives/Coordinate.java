@@ -1,4 +1,4 @@
-package primitives;
+package main.primitives;
 
 /**
  * Coordinate for Graphics

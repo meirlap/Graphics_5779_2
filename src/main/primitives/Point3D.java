@@ -1,6 +1,8 @@
-package primitives;
+package main.primitives;
 
 import java.util.Objects;
+
+import static java.lang.StrictMath.sqrt;
 
 public class Point3D extends Point2D{
     private Coordinate z;
@@ -13,6 +15,20 @@ public class Point3D extends Point2D{
         if (!super.equals(o)) return false;
         Point3D point3D = (Point3D) o;
         return getZ().equals(point3D.getZ());
+    }
+
+    public  Vector substract(Point3D pt)
+    {
+        return new Vector(pt,this);
+    }
+    public double distance(Point3D other)
+    {
+        double xx= Util.uscale((other.getX().get()-getX().get()),(other.getX().get()-getX().get()));
+        double yy= Util.uscale((other.getY().get()-getY().get()),(other.getY().get()-getY().get()));
+        double zz= Util.uscale((other.getZ().get()-getZ().get()),(other.getZ().get()-getZ().get()));
+
+        //return  sqrt(xx+yy+zz);
+        return (Util.uadd(zz,Util.uadd(xx,yy)));
     }
 
     public Point3D addVector(Vector v)

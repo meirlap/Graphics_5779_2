@@ -1,4 +1,4 @@
-package primitives;
+package main.primitives;
 
 import java.util.Objects;
 
@@ -8,6 +8,15 @@ public class Vector {
     public Vector(Point3D head) {
         this.setHead(head);
     }
+
+    public Vector(Point3D pt1, Point3D pt2) {
+
+         setHead(new Point3D(
+                pt2.getX().subtract(pt1.getX()),
+                pt2.getY().subtract(pt1.getY()),
+                pt2.getZ().subtract(pt1.getZ())));
+    }
+
     public void scale(double scalingFactor){
 
         this.head.setX(new Coordinate(
