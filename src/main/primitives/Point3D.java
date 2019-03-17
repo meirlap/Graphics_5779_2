@@ -7,6 +7,12 @@ import static java.lang.StrictMath.sqrt;
 public class Point3D extends Point2D{
     private Coordinate z;
 
+    public Point3D(double x, double y, double z) {
+        setX(new Coordinate(x));
+        setY(new Coordinate(y));
+        setZ(new Coordinate(z));
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

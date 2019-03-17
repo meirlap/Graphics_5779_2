@@ -2,6 +2,8 @@ package main.primitives;
 
 import java.util.Objects;
 
+import static java.lang.StrictMath.sqrt;
+
 public class Vector {
     private Point3D head;
 
@@ -15,6 +17,10 @@ public class Vector {
                 pt2.getX().subtract(pt1.getX()),
                 pt2.getY().subtract(pt1.getY()),
                 pt2.getZ().subtract(pt1.getZ())));
+    }
+
+    public Vector(Vector direction) {
+        setHead(direction.getHead());
     }
 
     public void scale(double scalingFactor){
@@ -63,11 +69,47 @@ public class Vector {
         this.setHead(new Point3D());
     }
 
+    @Override
+    public String toString() {
+        return "Vector{" +
+                "head=" + getHead().toString() +
+                '}';
+    }
+
     public Point3D getHead() {
         return new Point3D(head);
     }
 
     public void setHead(Point3D head) {
         this.head = new Point3D(head);
+    }
+
+    public void normalize() {double x = this.getHead().getX().get();
+        double y = this.getHead().getY().get();
+        double z = this.getHead().getZ().get();
+
+        double length = this.length();
+
+        if (length == 0)
+            throw new ArithmeticException();
+
+        this.setHead(new Point3D(
+                new Coordinate(x/length),
+                new Coordinate(y/length),
+                new Coordinate(z/length)));
+    }
+
+    private double length() {
+        double x = this.getHead().getX().get();
+        double y = this.getHead().getY().get();
+        double z = this.getHead().getZ().get();
+
+        return sqrt(
+                Util.uadd(
+                    Util.uadd(
+                        Util.uscale(x,x),
+                        Util.uscale(y,y)),
+                    Util.uscale(z,z)));
+
     }
 }
