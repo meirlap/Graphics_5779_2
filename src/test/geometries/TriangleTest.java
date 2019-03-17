@@ -1,6 +1,7 @@
-package main.geometries;
+package geometries;
 
-import main.primitives.Point3D;
+import main.primitives.*;
+import  main.geometries.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
