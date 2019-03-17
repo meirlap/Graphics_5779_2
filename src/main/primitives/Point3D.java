@@ -10,7 +10,7 @@ public class Point3D extends Point2D{
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (this == null) return false;
+        if (o == null) return false;
         if (!(o instanceof Point3D)) return false;
         if (!super.equals(o)) return false;
         Point3D point3D = (Point3D) o;
@@ -60,6 +60,7 @@ public class Point3D extends Point2D{
     }
 
     public Point3D(Point3D other) {
+        super();
         this.setX(other.getX());
         this.setY(other.getY());
         this.setZ(other.getZ());
@@ -71,10 +72,10 @@ public class Point3D extends Point2D{
     }
 
     public Coordinate getZ() {
-        return  new Coordinate(z);
+        return new Coordinate(z.get());
     }
 
     public void setZ(Coordinate z) {
-        this.z =  new Coordinate(z);
+        this.z = new Coordinate(z.get());
     }
 }

@@ -13,6 +13,11 @@ public class Point2D {
         setY(Coordinate.ZERO);
     }
 
+    public Point2D(Coordinate x, Coordinate y) {
+        this.setX(x);
+        this.setY(y);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -30,8 +35,12 @@ public class Point2D {
 
     public double distance(Point2D other)
     {
-        double xx= Util.uscale((other.getX().get()-getX().get()),(other.getX().get()-getX().get()));
-        double yy= Util.uscale((other.getY().get()-getY().get()),(other.getY().get()-getY().get()));
+        double xx = Util.uscale(
+                Util.usubtract(other.getX().get(), getX().get()),
+                Util.usubtract(other.getX().get(), getX().get()));
+        double yy = Util.uscale(
+                Util.usubtract(other.getY().get(), getY().get()),
+                Util.usubtract(other.getY().get(), getY().get()));
 
         return  sqrt(xx+yy);
     }
@@ -49,22 +58,18 @@ public class Point2D {
         this.setY(other.getY());
     }
 
-    public Point2D(Coordinate x, Coordinate y) {
-        this.setX(x);
-        this.setY(y);
-    }
 
     public Coordinate getX() {
-        return new Coordinate(x);
+        return new Coordinate(x.get());
     }
     public Coordinate getY() {
-        return new Coordinate(y);
+        return new Coordinate(y.get());
     }
 
     public void setX(Coordinate x) {
-        this.x = new Coordinate(x);
+        this.x = new Coordinate(x.get());
     }
     public void setY(Coordinate y) {
-        this.y = new Coordinate(y);
+        this.y = new Coordinate(y.get());
     }
 }
