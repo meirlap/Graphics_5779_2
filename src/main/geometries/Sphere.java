@@ -5,20 +5,24 @@ import main.primitives.Vector;
 
 import java.util.Objects;
 
-public class Sphere  extends Geometry{
-    public Sphere() {
+public class Sphere  extends RadialGeometry{
+
+    private Point3D center;
+
+    public Sphere(){
+        super(0.0);
+        setCenter(new Point3D());
     }
 
-    public Sphere(Point3D center) {
-        this.setCenter(center);
+    public Sphere (Sphere sphere){
+        super(sphere.getRadius());
+        setCenter(sphere.getCenter());
     }
 
-    public Sphere(Point3D center, double r) {
-        super();
+    public Sphere(double radius, Point3D center){
+        super(radius);
         setCenter(center);
-
     }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -38,10 +42,7 @@ public class Sphere  extends Geometry{
                 "center=" + getCenter() +
                 '}';
     }
-
-    private Point3D center;
-
-    @Override
+  @Override
     public Vector getNormal(Point3D point) {
         Vector N = new Vector(center, point);
         N.normalize();
