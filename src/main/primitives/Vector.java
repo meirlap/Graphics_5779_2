@@ -23,6 +23,10 @@ public class Vector {
         setHead(direction.getHead());
     }
 
+    public Vector(double x, double y, double z) {
+        setHead(new Point3D(x,y,z));
+    }
+
     public void scale(double scalingFactor){
 
         this.head.setX(new Coordinate(
@@ -99,7 +103,7 @@ public class Vector {
                 new Coordinate(z/length)));
     }
 
-    private double length() {
+    public double length() {
         double x = this.getHead().getX().get();
         double y = this.getHead().getY().get();
         double z = this.getHead().getZ().get();

@@ -13,6 +13,12 @@ public class Sphere  extends Geometry{
         this.setCenter(center);
     }
 
+    public Sphere(Point3D center, double r) {
+        super();
+        setCenter(center);
+
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -37,14 +43,17 @@ public class Sphere  extends Geometry{
 
     @Override
     public Vector getNormal(Point3D point) {
-        return null;
+        Vector N = new Vector(center, point);
+        N.normalize();
+        return N;
+
     }
 
     public Point3D getCenter() {
-        return center;
+        return new Point3D(center);
     }
 
     public void setCenter(Point3D center) {
-        this.center = center;
+        this.center = new Point3D(center);
     }
 }

@@ -5,7 +5,7 @@ import main.primitives.Vector;
 
 import java.util.Objects;
 
-public class Triangle extends Geometry {
+public class Triangle extends Plane {
     private Point3D p1;
     private Point3D p2;
     private  Point3D p3;
@@ -60,21 +60,9 @@ public class Triangle extends Geometry {
     }
 
     public Triangle(Point3D p1, Point3D p2, Point3D p3) {
+        super(p1,p2,p3);
         this.setP1(p1);
         this.setP2(p2);
         this.setP3(p3);
-    }
-
-    @Override
-    public Vector getNormal(Point3D point){
-
-        Vector v1 = new Vector (p1,p2);
-        Vector v2 = new Vector (p1,p3);
-        Vector N = new Vector (v1.crossProduct(v2));
-
-        N.normalize();
-
-        N.scale(-1);
-        return N;
     }
 }
