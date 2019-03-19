@@ -23,10 +23,16 @@ public class Sphere  extends RadialGeometry{
         super(radius);
         setCenter(center);
     }
+
+    public Sphere(Point3D center, double radius) {
+        this(radius, center);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Sphere)) return false;
+        if (o == null) return false;
         Sphere sphere = (Sphere) o;
         return getCenter().equals(sphere.getCenter());
     }
