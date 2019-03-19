@@ -10,7 +10,7 @@ public class Plane  extends Geometry{
     protected Vector N;
 
     public Plane(Point3D p1, Point3D p2, Point3D p3) {
-         Vector U = new Vector (p1, p2);
+        Vector U = new Vector (p1, p2);
         Vector V = new Vector (p1, p3);
         Vector n = new Vector (U.crossProduct(V));
 
