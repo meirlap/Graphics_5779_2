@@ -68,7 +68,7 @@ public  class Plane  extends Geometry{
     }
 
     public void setN(Vector n) {
-        N =  new Vector(N);
+        N =  new Vector(n);
     }
 
     @Override
