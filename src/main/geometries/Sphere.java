@@ -1,8 +1,11 @@
 package main.geometries;
 
 import main.primitives.Point3D;
+import main.primitives.Ray;
 import main.primitives.Vector;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Sphere  extends RadialGeometry{
@@ -62,5 +65,40 @@ public class Sphere  extends RadialGeometry{
 
     public void setCenter(Point3D center) {
         this.center = new Point3D(center);
+    }
+
+    @Override
+    public List<Point3D> FindIntersections(Ray ray) {
+        List<Point3D> intersectionPoints= new ArrayList<Point3D>(2);
+
+        Vector L = new Vector(ray.getPOO(), this.getCenter());
+        double tm = L.dotProduct(ray.getDirection());
+        double d = Math.sqrt(Math.pow(L.length(), 2) - Math.pow(tm, 2));
+
+        if (d > this.getRadius())
+            return intersectionPoints;
+
+        double th = Math.sqrt(Math.pow(this.getRadius(), 2) - Math.pow(d, 2));
+
+        double t1 = tm - th;
+        double t2 = tm + th;
+
+        if (t1 >= 0){
+            Vector V = ray.getDirection();
+            V.scale(t1);
+            Point3D p = ray.getPOO();
+            Point3D P1 =p.addVector(V);
+            intersectionPoints.add(P1);
+        }
+
+        if (t2 >= 0){
+            Vector V = ray.getDirection();
+            V.scale(t2);
+            Point3D p = ray.getPOO();
+            Point3D P2 =p.addVector(V);
+            intersectionPoints.add(P2);
+        }
+
+        return intersectionPoints;
     }
 }

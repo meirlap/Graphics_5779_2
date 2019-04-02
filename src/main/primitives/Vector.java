@@ -102,7 +102,23 @@ public class Vector {
                 new Coordinate(y/length),
                 new Coordinate(z/length)));
     }
+    public double dotProduct(Vector vector) {
 
+        double x1 = this.getHead().getX().get();
+        double y1 = this.getHead().getY().get();
+        double z1 = this.getHead().getZ().get();
+
+        double x2 = vector.getHead().getX().get();
+        double y2 = vector.getHead().getY().get();
+        double z2 = vector.getHead().getZ().get();
+
+        return Util.uadd(
+                Util.uadd(
+                        Util.uscale(x1,x2),
+                        Util.uscale(y1,y2)),
+                Util.uscale(z1,z2));
+
+    }
     public double length() {
         double x = this.getHead().getX().get();
         double y = this.getHead().getY().get();
