@@ -1,11 +1,14 @@
 package main.geometries;
 
 import main.primitives.Point3D;
+import main.primitives.Ray;
 import main.primitives.Vector;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
-public class Plane  extends Geometry{
+public  class Plane  extends Geometry{
     protected Point3D p;
     protected Vector N;
 
@@ -19,6 +22,16 @@ public class Plane  extends Geometry{
 
         setP(p1);
         setN(n);
+    }
+
+    public Plane(Vector n, Point3D p1) {
+        super();
+        n.normalize();
+        n.scale(-1);
+
+        setP(p1);
+        setN(n);
+
     }
 
     @Override
@@ -56,5 +69,12 @@ public class Plane  extends Geometry{
 
     public void setN(Vector n) {
         N =  new Vector(N);
+    }
+
+    @Override
+    public List<Point3D> FindIntersections(Ray ray)
+    {
+        List<Point3D> intersections = new ArrayList<Point3D>();
+        return intersections;
     }
 }

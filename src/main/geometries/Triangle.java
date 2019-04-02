@@ -1,14 +1,17 @@
 package main.geometries;
 
 import main.primitives.Point3D;
+import main.primitives.Ray;
 import main.primitives.Vector;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Triangle extends Plane {
     private Point3D p1;
     private Point3D p2;
-    private  Point3D p3;
+    private Point3D p3;
 
     public Point3D getP1() {
         return p1;
@@ -60,9 +63,59 @@ public class Triangle extends Plane {
     }
 
     public Triangle(Point3D p1, Point3D p2, Point3D p3) {
-        super(p1,p2,p3);
+        super(p1, p2, p3);
         this.setP1(p1);
         this.setP2(p2);
         this.setP3(p3);
+    }
+
+    @Override
+    public List<Point3D> FindIntersections(Ray ray) {
+
+        List<Point3D> intersectionPoints = new ArrayList<Point3D>(1);
+
+        // Intersecting the triangular plane
+
+        Point3D P0 = ray.getPOO();
+
+        Vector N = getNormal(null);
+        Plane plane = new Plane(N, p3);
+
+        if (plane.FindIntersections(ray).isEmpty())
+            return intersectionPoints;
+
+        Point3D intersectionPlane = plane.FindIntersections(ray).get(0);
+
+        // Checking if the interseculating point is bounded by the triangle
+        Vector P_P0 = new Vector(P0, intersectionPlane);
+
+        // Checking 1/3 triangular side
+        Vector V1_1 = new Vector(P0, this.p1);
+        Vector V2_1 = new Vector(P0, this.p2);
+        Vector N1 = V1_1.crossProduct(V2_1);
+        N1.normalize();
+        double S1 = -P_P0.dotProduct(N1);
+
+        // Checking 2/3 triangular side
+        Vector V1_2 = new Vector(P0, this.p2);
+        Vector V2_2 = new Vector(P0, this.p3);
+        Vector N2 = V1_2.crossProduct(V2_2);
+        N2.normalize();
+        double S2 = -P_P0.dotProduct(N2);
+
+        // Checking 1/3 triangular side
+        Vector V1_3 = new Vector(P0, this.p3);
+        Vector V2_3 = new Vector(P0, this.p1);
+        Vector N3 = V1_3.crossProduct(V2_3);
+        N3.normalize();
+        double S3 = -P_P0.dotProduct(N3);
+
+        if (((S1 > 0) && (S2 > 0) && (S3 > 0)) ||
+                ((S1 < 0) && (S2 < 0) && (S3 < 0))) {
+            intersectionPoints.add(intersectionPlane);
+        }
+
+        return intersectionPoints;
+
     }
 }
