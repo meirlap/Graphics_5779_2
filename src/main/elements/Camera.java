@@ -4,6 +4,7 @@ import main.primitives.*;
 
 import java.util.Map;
 
+// al taatik stam kacha -- tachshov kodem !!
 public class Camera {
 
     // Eye point of the camera
