@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+// al taatik stam kacha -- tachshov kodem !!
 public class Sphere  extends RadialGeometry{
 
     private Point3D center;
