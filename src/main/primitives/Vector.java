@@ -8,7 +8,13 @@ public class Vector {
     private Point3D head;
 
     public Vector(Point3D head) {
+        //TO DO
+        //if head != Point3D(0.0,0.0,0.0)
         this.setHead(head);
+    }
+
+    public Vector() {
+        this.setHead(new Point3D());
     }
 
     public Vector(Point3D pt1, Point3D pt2) {
@@ -39,6 +45,13 @@ public class Vector {
                 head.getZ().scale(scalingFactor)));
     }
 
+    public void add (Vector vector ){
+       this.head = this.head.addVector(vector);
+    }
+
+    public void subtract (Vector vector ){
+        this.head =  this.head.subtract(vector);
+    }
     public Vector crossProduct (Vector vector) {
 
         double x1 = this.getHead().getX().get();
@@ -67,10 +80,6 @@ public class Vector {
     @Override
     public int hashCode() {
         return Objects.hash(getHead());
-    }
-
-    public Vector() {
-        this.setHead(new Point3D());
     }
 
     @Override

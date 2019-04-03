@@ -16,7 +16,7 @@ public class Ray {
 
     public Ray(){
         this._POO = new Point3D();
-        this._direction = new Vector(this._POO);
+        this._direction = new Vector();
     }
 
     public Ray(Ray ray){

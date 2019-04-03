@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public  class Plane  extends Geometry{
-    protected Point3D p;
+public  class Plane  extends FlatGeometry{
+    protected Point3D P;
     protected Vector N;
 
     public Plane(Point3D p1, Point3D p2, Point3D p3) {
@@ -60,11 +60,11 @@ public  class Plane  extends Geometry{
     }
 
     public Point3D getP() {
-        return new Point3D(p);
+        return new Point3D(P);
     }
 
     public void setP(Point3D p) {
-        this.p = new Point3D(p);
+        this.P = new Point3D(p);
     }
 
     public void setN(Vector n) {
@@ -74,7 +74,20 @@ public  class Plane  extends Geometry{
     @Override
     public List<Point3D> FindIntersections(Ray ray)
     {
-        List<Point3D> intersections = new ArrayList<Point3D>();
-        return intersections;
+        List<Point3D> intersectionPoints = new ArrayList<Point3D>();
+        Point3D P0 = ray.getPOO();
+        Point3D Q0 = this.getP();
+        Vector N = this.getNormal(null);
+        Vector V = ray.getDirection();
+
+        Vector v = new Vector (Q0, P0);
+        double t = (N.dotProduct(v) * -1) / N.dotProduct(V);
+
+        if (t >= 0){
+            V.scale(t);
+            Point3D p =P0.addVector(V);
+            intersectionPoints.add(p);
+        }
+        return intersectionPoints;
     }
 }

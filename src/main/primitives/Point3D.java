@@ -4,7 +4,7 @@ import java.util.Objects;
 
 import static java.lang.StrictMath.sqrt;
 
-public class Point3D extends Point2D{
+public class Point3D extends Point2D {
     private Coordinate z;
 
     public Point3D(double x, double y, double z) {
@@ -23,30 +23,41 @@ public class Point3D extends Point2D{
         return getZ().equals(point3D.getZ());
     }
 
-    public  Vector substract(Point3D pt)
-    {
-        return new Vector(pt,this);
+    public Vector substract(Point3D pt) {
+        return new Vector(pt, this);
     }
-    public double distance(Point3D other)
-    {
-        double xx= Util.uscale((other.getX().get()-getX().get()),(other.getX().get()-getX().get()));
-        double yy= Util.uscale((other.getY().get()-getY().get()),(other.getY().get()-getY().get()));
-        double zz= Util.uscale((other.getZ().get()-getZ().get()),(other.getZ().get()-getZ().get()));
+
+    public double distance(Point3D other) {
+        double xx = Util.uscale((other.getX().get() - getX().get()), (other.getX().get() - getX().get()));
+        double yy = Util.uscale((other.getY().get() - getY().get()), (other.getY().get() - getY().get()));
+        double zz = Util.uscale((other.getZ().get() - getZ().get()), (other.getZ().get() - getZ().get()));
 
         //return  sqrt(xx+yy+zz);
-        return (Util.uadd(zz,Util.uadd(xx,yy)));
+        return (Util.uadd(zz, Util.uadd(xx, yy)));
     }
 
-    public Point3D addVector(Vector v)
-    {
+
+    public Point3D addVector(Vector v) {
         Point3D p_vec = v.getHead();
 
         Point3D result = new Point3D(
                 this.getX().add(p_vec.getX()),
                 this.getY().add(p_vec.getY()),
                 this.getZ().add(p_vec.getZ()));
-        return  result;
+        return result;
     }
+
+    public Point3D subtract(Vector v) {
+        Point3D p_vec = v.getHead();
+
+        Point3D result = new Point3D(
+                this.getX().subtract(p_vec.getX()),
+                this.getY().subtract(p_vec.getY()),
+                this.getZ().subtract(p_vec.getZ()));
+
+        return result;
+    }
+
     @Override
     public String toString() {
         return "Point3D{" +

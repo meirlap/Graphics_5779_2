@@ -80,7 +80,7 @@ public class Triangle extends Plane {
 
         Vector N = getNormal(null);
         Plane plane = new Plane(N, p3);
-
+        //Plane myplane = (Plane)this;
         if (plane.FindIntersections(ray).isEmpty())
             return intersectionPoints;
 
