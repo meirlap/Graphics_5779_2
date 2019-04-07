@@ -77,6 +77,7 @@ public class Vector {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
+        if(o==null) return false;
         if (!(o instanceof Vector)) return false;
         Vector vector = (Vector) o;
         return getHead().equals(vector.getHead());
