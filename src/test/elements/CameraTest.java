@@ -26,6 +26,6 @@ class CameraTest {
 
         //x is negative why?
         Ray answer = new Ray(centerPoint, direction);
-        assertEquals(answer.getDirection(), ray.getDirection());
+        assertEquals(answer.toString(), ray.toString());
     }
 }

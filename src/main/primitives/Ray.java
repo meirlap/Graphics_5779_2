@@ -38,4 +38,26 @@ public class Ray {
     public Vector  getDirection() { return new Vector(_direction); }
     public Point3D getPOO()       { return new Point3D(_POO);	   }
 
+    @Override
+    public String toString() {
+        return "Ray{" +
+                "_POO=" + _POO +
+                ", _direction=" + _direction +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null) return false;
+        if (!(o instanceof Ray)) return false;
+        Ray ray = (Ray) o;
+        return _POO.equals(ray._POO) &&
+                _direction.equals(ray._direction);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(_POO, _direction);
+    }
 }
