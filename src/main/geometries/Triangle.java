@@ -20,6 +20,7 @@ public class Triangle extends Plane {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
+        if(o == null) return false;
         if (!(o instanceof Triangle)) return false;
         Triangle triangle = (Triangle) o;
         return getP1().equals(triangle.getP1()) &&

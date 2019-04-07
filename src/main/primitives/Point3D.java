@@ -5,6 +5,9 @@ import java.util.Objects;
 import static java.lang.StrictMath.sqrt;
 
 public class Point3D extends Point2D {
+
+    public static final Point3D ZERO = new Point3D();
+
     private Coordinate z;
 
     public Point3D(double x, double y, double z) {

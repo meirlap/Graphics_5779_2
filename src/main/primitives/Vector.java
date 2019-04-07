@@ -10,6 +10,10 @@ public class Vector {
     public Vector(Point3D head) {
         //TO DO
         //if head != Point3D(0.0,0.0,0.0)
+        if(head.equals(Point3D.ZERO))
+        {
+            throw new IllegalArgumentException("not explicit Point(0,0,0) allowed");
+        }
         this.setHead(head);
     }
 
@@ -19,6 +23,10 @@ public class Vector {
 
     public Vector(Point3D pt1, Point3D pt2) {
 
+        if(pt1.equals(pt2))
+        {
+            throw new IllegalArgumentException("pt1 == pt2 !!! nu nu nu");
+        }
          setHead(new Point3D(
                 pt2.getX().subtract(pt1.getX()),
                 pt2.getY().subtract(pt1.getY()),

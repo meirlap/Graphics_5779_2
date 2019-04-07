@@ -35,8 +35,8 @@ public class Sphere  extends RadialGeometry{
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Sphere)) return false;
         if (o == null) return false;
+        if (!(o instanceof Sphere)) return false;
         Sphere sphere = (Sphere) o;
         return getCenter().equals(sphere.getCenter());
     }
@@ -77,12 +77,12 @@ public class Sphere  extends RadialGeometry{
 
         Vector L = new Vector(ray.getPOO(), this.getCenter());
         double tm = L.dotProduct(ray.getDirection());
-        double d = Math.sqrt(Math.pow(L.length(), 2) - Math.pow(tm, 2));
+        double d = Math.sqrt((L.length()*L.length()) - (tm*tm));
 
         if (d > this.getRadius())
             return intersectionPoints;
 
-        double th = Math.sqrt(Math.pow(this.getRadius(), 2) - Math.pow(d, 2));
+        double th = Math.sqrt((this.getRadius()*this.getRadius()) - (d*d));
 
         double t1 = tm - th;
         double t2 = tm + th;
