@@ -13,7 +13,7 @@ class VectorTest {
         Vector v = new Vector(new Point3D(.5, -5, 10));
         v.normalize();
         assertEquals(1, v.length(), 1e-10);
-        v = new Vector(0, 0, 0);
+        v = new Vector();
         try {
             v.normalize();
             fail("Didn't throw divide by zero exception!");
