@@ -71,7 +71,7 @@ public class Triangle extends Plane {
     }
 
     @Override
-    public List<Point3D> FindIntersections(Ray ray) {
+    public List<Point3D> findIntersections(Ray ray) {
 
         List<Point3D> intersectionPoints = new ArrayList<Point3D>(1);
 
@@ -82,10 +82,10 @@ public class Triangle extends Plane {
         Vector N = getNormal(null);
         Plane plane = new Plane(N, p3);
         //Plane myplane = (Plane)this;
-        if (plane.FindIntersections(ray).isEmpty())
+        if (plane.findIntersections(ray).isEmpty())
             return intersectionPoints;
 
-        Point3D intersectionPlane = plane.FindIntersections(ray).get(0);
+        Point3D intersectionPlane = plane.findIntersections(ray).get(0);
 
         // Checking if the interseculating point is bounded by the triangle
         Vector P_P0 = new Vector(P0, intersectionPlane);

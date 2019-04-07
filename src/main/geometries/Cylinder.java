@@ -43,15 +43,29 @@ public class Cylinder extends RadialGeometry {
     // ***************** Operations ******************** //
 
     @Override
-    public List<Point3D> FindIntersections(Ray ray) {
+    public List<Point3D> findIntersections(Ray ray) {
         // To be implemented
         return null;
     }
 
+
+    /**
+     *
+     * @param point but be on the circumference of the cylinder
+     * @return Normal to the cylinder
+     */
     @Override
     public Vector getNormal(Point3D point) {
+        Point3D P = new Point3D(point);
+        Point3D P0 = new Point3D(_axisPoint);
+        Vector v = this.getAxisDirection();
+        double t= v.dotProduct(P.substract(P0));
+        v.scale(t);
+        Point3D O = P0.addVector(v);
+
+        Vector N = P.substract(O);
         // To be implemented
-        return null;
+        return N;
     }
 
 }

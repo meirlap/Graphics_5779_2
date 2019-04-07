@@ -8,9 +8,7 @@ public class Vector {
     private Point3D head;
 
     public Vector(Point3D head) {
-        //TO DO
-        //if head != Point3D(0.0,0.0,0.0)
-        if (head.equals(Point3D.ZERO)) {
+          if (head.equals(Point3D.ZERO)) {
             throw new IllegalArgumentException("not explicit Point(0,0,0) allowed");
         }
         this.setHead(head);

@@ -72,7 +72,7 @@ public class Sphere  extends RadialGeometry{
     //replace pow and other arithmetic fubction with Util methods
 
     @Override
-    public List<Point3D> FindIntersections(Ray ray) {
+    public List<Point3D> findIntersections(Ray ray) {
         List<Point3D> intersectionPoints= new ArrayList<Point3D>(2);
 
         Vector L = new Vector(ray.getPOO(), this.getCenter());

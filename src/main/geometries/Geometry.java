@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface Geometry {
     Vector getNormal(Point3D point);
-    List<Point3D> FindIntersections(Ray ray);
+    List<Point3D> findIntersections(Ray ray);
 }
