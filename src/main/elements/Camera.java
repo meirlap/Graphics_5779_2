@@ -109,8 +109,7 @@ public class Camera {
         Vector vToward = new Vector(_vTo);
         vToward.scale(screenDist);
 
-        Point3D Pc = new Point3D(_P0);
-        Pc = Pc.addVector(vToward);
+        Point3D Pc = (new Point3D(_P0)).addVector(vToward);
 
         // Calculating x-y ratios
         double Rx = screenWidth  / Nx;
@@ -125,9 +124,7 @@ public class Camera {
 
         vRight.subtract(vUp);
 
-        Pc =Pc.addVector(vRight);
-
-        Point3D P = new Point3D(Pc);
+        Point3D P = Pc.addVector(vRight);
 
         // constructing ray between P0 and the intersection point
         Vector ray = new Vector(_P0, P);
