@@ -39,12 +39,12 @@ public class Camera {
         _vUp = new Vector(vUp);
         _vTo = new Vector(vTo);
 
-        _vRight = _vUp.crossProduct(_vTo);
-        _vUp = _vTo.crossProduct(_vRight);
+        _vRight = new Vector(_vUp.crossProduct(_vTo));
+        //_vUp = _vTo.crossProduct(_vRight);
 
+        _vRight.normalize();
         _vUp.normalize();
         _vTo.normalize();
-        _vRight.normalize();
 
     }
 
@@ -105,31 +105,28 @@ public class Camera {
 
         // Calculating the image center
         Vector vToward = new Vector(_vTo);
+        Vector vRight = new Vector(_vRight);
+        Vector vUP = new Vector(_vUp);
+
+        vToward.normalize();
+        vRight.normalize();
+        vUP.normalize();
+
         vToward.scale(screenDist);
 
-        Point3D Pc = (new Point3D(_P0)).addVector(vToward);
+        Point3D Pc = getP0().addVector(vToward);
 
         // Calculating x-y ratios
         double Rx = screenWidth  / Nx;
         double Ry = screenHeight / Ny;
 
         // Calculating P - the intersection point
-        Vector vRight = new Vector(_vRight);
-        Vector vUp = new Vector(_vUp);
+        vRight.scale(((x - (Nx / 2.0)) * Rx + (Rx / 2.0)));
+        vUP.scale(-((y - (Ny / 2.0)) * Ry + (Ry / 2.0)));
 
-        vRight.scale(((x - (Nx/2.0)) * Rx + 0.5 * Rx));
-        vUp.   scale(((y - (Ny/2.0)) * Ry + 0.5 * Ry));
+        Point3D P = (Pc.addVector(vRight)).addVector(vUP);
 
-        vRight.subtract(vUp);
-
-        Point3D P = Pc.addVector(vRight);
-
-        // constructing ray between P0 and the intersection point
-        Vector ray = new Vector(_P0, P);
-        ray.normalize();
-
-        // returning the constructed ray
-        return new Ray(P, ray);
-
+        // returning the constructed ray between P0 and the intersection point
+        return new Ray(P, new Vector(getP0(), P));
     }
 }
