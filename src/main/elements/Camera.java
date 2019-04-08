@@ -75,8 +75,6 @@ public class Camera {
         _vUp.normalize();
         _vTo.normalize();
         _vRight.normalize();
-
-
     }
 
     // ***************** Getters/Setters ********************** //
