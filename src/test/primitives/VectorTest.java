@@ -2,13 +2,13 @@ package primitives;
 
 import main.primitives.Point3D;
 import main.primitives.Vector;
-import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 class VectorTest {
 
-    @Test
+    @org.junit.jupiter.api.Test
     void testNormalize() {
         Vector v = new Vector(new Point3D(.5, -5, 10));
         v.normalize();

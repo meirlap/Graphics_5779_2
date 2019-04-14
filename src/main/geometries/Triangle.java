@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Triangle extends Plane {
+public class Triangle extends FlatGeometry {
     private Point3D p1;
     private Point3D p2;
     private Point3D p3;
@@ -64,7 +64,6 @@ public class Triangle extends Plane {
     }
 
     public Triangle(Point3D p1, Point3D p2, Point3D p3) {
-        super(p1, p2, p3);
         this.setP1(p1);
         this.setP2(p2);
         this.setP3(p3);
@@ -80,8 +79,8 @@ public class Triangle extends Plane {
         Point3D P0 = ray.getPOO();
 
         Vector N = getNormal(null);
+
         Plane plane = new Plane(N, p3);
-        //Plane myplane = (Plane)this;
         if (plane.findIntersections(ray).isEmpty())
             return intersectionPoints;
 
@@ -118,5 +117,15 @@ public class Triangle extends Plane {
 
         return intersectionPoints;
 
+    }
+
+    @Override
+    public Vector getNormal(Point3D o) {
+        Vector v1 = new Vector(p1,p2);
+        Vector v2 = new Vector(p1,p3);
+        Vector n = v1.crossProduct(v2);
+        n.normalize();
+        n.scale(-1);
+        return  n;
     }
 }

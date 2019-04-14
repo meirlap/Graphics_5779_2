@@ -85,8 +85,13 @@ public class Plane extends FlatGeometry {
         Vector N = this.getNormal(null);
         Vector V = ray.getDirection();
 
-        Vector v = new Vector(Q0, P0);
-        double t = (N.dotProduct(v) * -1) / N.dotProduct(V);
+        if(N.dotProduct(V)==0)
+        {
+            return intersectionPoints;
+        }
+
+        Vector u = new Vector(Q0, P0);
+        double t = (N.dotProduct(u) * -1) / N.dotProduct(V);
 
         if (t >= 0) {
             V.scale(t);
