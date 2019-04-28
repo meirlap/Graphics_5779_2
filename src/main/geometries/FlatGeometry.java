@@ -1,4 +1,4 @@
 package main.geometries;
 
-public abstract class FlatGeometry implements Geometry{
+public abstract class FlatGeometry extends Geometry {
 }
