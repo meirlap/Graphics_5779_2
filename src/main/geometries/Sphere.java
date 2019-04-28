@@ -75,12 +75,12 @@ public class Sphere  extends RadialGeometry{
     public List<Point3D> findIntersections(Ray ray) {
         List<Point3D> intersectionPoints= new ArrayList<Point3D>(2);
 
-        Vector L = new Vector(ray.getPOO(), this.getCenter());
-        double tm = L.dotProduct(ray.getDirection());
-        double d = Math.sqrt((L.length()*L.length()) - (tm*tm));
+        Vector u = new Vector(ray.getPOO(), this.getCenter());
+        double tm = u.dotProduct(ray.getDirection());
+        double d = Math.sqrt((u.length()*u.length()) - (tm*tm));
 
         if (d > this.getRadius())
-            return intersectionPoints;
+            return intersectionPoints; // return null;
 
         double th = Math.sqrt((this.getRadius()*this.getRadius()) - (d*d));
 
