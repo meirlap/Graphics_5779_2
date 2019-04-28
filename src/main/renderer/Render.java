@@ -169,14 +169,14 @@ public class Render {
 
         Vector normal = geometry.getNormal(point);
         normal.scale(-2);
-        point.add(normal);
+        Point3D p = point.addVector(normal);
 
         if (geometry instanceof FlatGeometry) {
-            return new Ray(point, inRay.getDirection());
+            return new Ray(p, inRay.getDirection());
         } else {
             // Here, Snell's law can be implemented.
             // The refraction index of both materials had to be derived
-            return new Ray(point, inRay.getDirection());
+            return new Ray(p, inRay.getDirection());
         }
 
     }
@@ -192,9 +192,9 @@ public class Render {
         Vector R = new Vector(l);
         R.normalize();
 
-        point.add(normal);
+        Point3D p = point.addVector(normal);
 
-        Ray reflectedRay = new Ray(point, R);
+        Ray reflectedRay = new Ray(p, R);
 
         return reflectedRay;
     }
@@ -208,9 +208,9 @@ public class Render {
         Point3D geometryPoint = new Point3D(point);
         Vector epsVector = new Vector(geometry.getNormal(point));
         epsVector.scale(2);
-        geometryPoint.add(epsVector);
+        Point3D p = geometryPoint.addVector(epsVector);
 
-        Ray lightRay = new Ray(geometryPoint, lightDirection);
+        Ray lightRay = new Ray(p, lightDirection);
         Map<Geometry, List<Point3D>> intersectionPoints = getSceneRayIntersections(lightRay);
 
         // Flat geometry cannot self intersect
