@@ -6,6 +6,7 @@ import main.primitives.Vector;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 // al taatik stam kacha -- tachshov kodem !!
@@ -30,6 +31,19 @@ public class Sphere  extends RadialGeometry{
 
     public Sphere(Point3D center, double radius) {
         this(radius, center);
+    }
+
+    public Sphere(Map<String, String> sphereAttributes) {
+        //        radius = Double.valueOf(sphereAttributes.get("radius"));
+        super(Double.valueOf(sphereAttributes.get("radius")));
+
+        String[] centerPoints = sphereAttributes
+                .get("center").split("\\s+");
+
+        center = new Point3D(Double.valueOf(centerPoints[0]),
+                Double.valueOf(centerPoints[1]),
+                Double.valueOf(centerPoints[2]));
+
     }
 
     @Override

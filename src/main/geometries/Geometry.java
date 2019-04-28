@@ -1,15 +1,16 @@
 package main.geometries;
 
+import main.primitives.Color;
 import main.primitives.Point3D;
 import main.primitives.Ray;
 import main.primitives.Vector;
 
-import java.awt.*;
 import java.util.List;
 
-public interface Geometry {
-    Vector getNormal(Point3D point);
-    List<Point3D> findIntersections(Ray ray);
+public abstract class Geometry implements IGeometry {
+    private Color _emmission = new Color(0, 0, 0);
 
-    Color getEmmission();
+    public Color getEmmission() {
+        return _emmission;
+    }
 }

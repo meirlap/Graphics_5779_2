@@ -6,12 +6,14 @@ import main.primitives.Vector;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public class Triangle extends FlatGeometry {
     private Point3D p1;
     private Point3D p2;
     private Point3D p3;
+
 
     public Point3D getP1() {
         return p1;
@@ -20,7 +22,7 @@ public class Triangle extends FlatGeometry {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if(o == null) return false;
+        if (o == null) return false;
         if (!(o instanceof Triangle)) return false;
         Triangle triangle = (Triangle) o;
         return getP1().equals(triangle.getP1()) &&
@@ -67,6 +69,33 @@ public class Triangle extends FlatGeometry {
         this.setP1(p1);
         this.setP2(p2);
         this.setP3(p3);
+    }
+
+    public Triangle(Map<String, String> triangleAttributes) {
+        String[] P0coordinates = triangleAttributes
+                .get("P0").split("\\s+");
+
+        Point3D _p1 = new Point3D(Double.valueOf(P0coordinates[0]),
+                Double.valueOf(P0coordinates[1]),
+                Double.valueOf(P0coordinates[2]));
+
+        String[] P1coordinates = triangleAttributes
+                .get("P1").split("\\s+");
+
+        Point3D _p2 = new Point3D(Double.valueOf(P1coordinates[0]),
+                Double.valueOf(P1coordinates[1]),
+                Double.valueOf(P1coordinates[2]));
+
+        String[] P2coordinates = triangleAttributes
+                .get("P2").split("\\s+");
+
+        Point3D _p3 = new Point3D(Double.valueOf(P2coordinates[0]),
+                Double.valueOf(P2coordinates[1]),
+                Double.valueOf(P2coordinates[2]));
+
+        this.setP1(_p1);
+        this.setP2(_p2);
+        this.setP3(_p3);
     }
 
     @Override
@@ -121,11 +150,11 @@ public class Triangle extends FlatGeometry {
 
     @Override
     public Vector getNormal(Point3D o) {
-        Vector v1 = new Vector(p1,p2);
-        Vector v2 = new Vector(p1,p3);
+        Vector v1 = new Vector(p1, p2);
+        Vector v2 = new Vector(p1, p3);
         Vector n = v1.crossProduct(v2);
         n.normalize();
         n.scale(-1);
-        return  n;
+        return n;
     }
 }

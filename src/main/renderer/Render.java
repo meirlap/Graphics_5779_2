@@ -1,6 +1,5 @@
 package main.renderer;
 
-import java.awt.Color;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -10,9 +9,7 @@ import java.util.Map.Entry;
 import main.elements.LightSource;
 import main.geometries.FlatGeometry;
 import main.geometries.Geometry;
-import main.primitives.Point3D;
-import main.primitives.Ray;
-import main.primitives.Vector;
+import main.primitives.*;
 import main.scenes.Scene;
 
 public class Render {
@@ -84,15 +81,15 @@ public class Render {
         _imageWriter.writeToimage();
     }
 
-    private Color calcColor(Geometry geometry, Point3D point, Ray ray) {
+    private java.awt.Color calcColor(Geometry geometry, Point3D point, Ray ray) {
         return calcColor(geometry, point, ray, 0);
     }
 
-    private Color calcColor(Geometry geometry, Point3D point, Ray inRay, int level) {
+    private java.awt.Color calcColor(Geometry geometry, Point3D point, Ray inRay, int level) {
 
 
         if (level == RECURSION_LEVEL) {
-            return new Color(0, 0, 0);
+            return new java.awt.Color(0, 0, 0);
         }
 
         Color ambientLight = _scene.getAmbientLight().getIntensity();
